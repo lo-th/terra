@@ -27,6 +27,7 @@ function Skybox(){
       case 5: cc = {r:76, g:61, b:38}; break;
       case 6: cc = {r:95, g:94, b:110}; break;
       case 7: cc = {r:109, g:108, b:122}; break;
+      case 8: cc = {r:144, g:140, b:129}; break;
     }
     
     this.fogColor = cc;

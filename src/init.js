@@ -170,60 +170,9 @@ function init(){
 
     }
 
-    /*try{ 
-       // gl = canvas.getContext( 'webgl2' );
-        var gloption = { antialias: true };
-        //gl = canvas.getContext("experimental-webgl");
-        gl = canvas.getContext( 'webgl2', gloption );
-        if (!gl) gl = canvas.getContext( 'experiemental-webgl2', gloption );
-        isWebGL2 = !!gl;
-        if (!isWebGL2) gl = canvas.getContext( 'webgl', gloption ) || canvas.getContext( 'experiemental-webgl', gloption );
-
-       start() 
-    }catch(e){
-        alert(e)
-    }
-    finally {
-        console.log(gl, isWebGL2);
-        //start() 
-    }*/
-    //if (!gl){ alert("Unable to initialize WebGL. Your browser may not support it."); return;}
-    /*
-    gl = canvas.getContext( 'webgl2', gloption );
-    if (!gl) gl = canvas.getContext( 'experiemental-webgl2', gloption );
-    isWebGL2 = !!gl;
-    if (!isWebGL2) gl = canvas.getContext( 'webgl', gloption ) || canvas.getContext( 'experiemental-webgl', gloption );
-*/
-
 }
 
 function start(){
-    /*var seedView = new Uint8Array(seedBuffer);
-    var i = seedNum;
-    while(i--){
-        seedView[i] = Math.floor(Math.random() * seedNum);
-    }
-
-    infos = document.getElementById("infos");
-    actions = document.getElementById("actions");
-    //canvas = document.getElementById("canvas");
-*/
-    
-   // doAction();
-    //var gloption = { antialias: true };
-
-    //gl = canvas.getContext( 'webgl2', gloption );
-    //if (!gl) gl = canvas.getContext( 'experiemental-webgl2', gloption );
-    //isWebGL2 = !!gl;
-    //if (!isWebGL2) gl = canvas.getContext( 'webgl', gloption ) || canvas.getContext( 'experiemental-webgl', gloption );
-   // if (!gl){ alert("Unable to initialize WebGL. Your browser may not support it."); return;}
-    //else renderer = new THREE.WebGLRenderer({canvas:canvas, precision:"mediump", antialias:false, alpha:false, stencil:false });
-    /*
-    gl = canvas.getContext( 'webgl2', option ) || canvas.getContext( 'experiemental-webgl2', option );
-    if (!gl) gl = canvas.getContext( 'webgl', option ) || canvas.getContext( 'experiemental-webgl', option );
-    else console.log('welcome to webgl2');
-    if (!gl){ alert("Unable to initialize WebGL. Your browser may not support it."); return;}
-    */
 
     setup(input.scale);
 
@@ -265,19 +214,6 @@ function start(){
     renderFrame();
 }
 
-/*var timer = {
-    time : new Date(),
-    id : "",
-    start : function(id){
-        Timer.id = id;
-        Timer.time = new Date();
-    },
-    end : function(){
-        var execTime = new Date() - Timer.time;
-        console.log("[" + Timer.id + "] Process time took: " + execTime + "ms");
-    }
-};*/
-
 function createProgram(gl, tvs, tfs, name){
     var fs = gl.createShader(gl.FRAGMENT_SHADER);
     gl.shaderSource(fs, tfs);
@@ -304,20 +240,12 @@ function renderFrame(){
     infosText = "";
 
     input.check();
-    //mat4.perspective(pMatrix, 45, width/height, .1, 400*512);
+
     mat4.perspective(45, ratio, .1, 400*mapSize,pMatrix);
-    //gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
     mat4.identity(mvMatrix);
-   
-    /*mat4.rotate(mvMatrix, mvMatrix, (input.pitch)*Math.PI/180, [1, 0, 0]);
-    mat4.rotate(mvMatrix, mvMatrix, (input.yaw)*Math.PI/180, [0, 1, 0]);
-    mat4.translate(mvMatrix, mvMatrix, [input.pos.x, input.pos.y, input.pos.z]);*/
 
     mat4.rotate(mvMatrix, (input.pitch)*torad, [1, 0, 0]);
     mat4.rotate(mvMatrix, (input.yaw)*torad, [0, 1, 0]);
-    //mat4.translate(mvMatrix, [input.pos.x, input.pos.y, input.pos.z]);
-
-
 
     if (input.depthOfField) gl.bindFramebuffer(gl.FRAMEBUFFER, xBuffer.buffer);
 
@@ -379,6 +307,7 @@ function renderFrame(){
     //infosText += "<br/>Quality (mouse wheel): " + Math.floor(40/input.scale)/10;
     //infosText += "<br/>Computed triangles: " + comp * cnt + " out of " + 528384*terrain.heightmaps.length + " ("+ Math.floor(((comp * cnt)/(528384*terrain.heightmaps.length)*1000))/10 +"% of total)" 
     infosText += "<br/>Draw calls: " + cnt + " | Quality (mouse wheel): " + Math.floor(40/input.scale)/10;
+    infosText += "<br/>Reload page for other planete";
     //infosText += "<br/>FPS: " + fps;
 
 
